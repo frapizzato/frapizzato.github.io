@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Francesco Pizzato</title>
+
+    <!-- Fonts and Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Subtle navigation at the very top -->
+    <nav class="top-nav">
+        <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#experience">Experience</a>
+            <a href="#education">Education</a>
+            <a href="#projects">Projects</a>
+            <a href="#skills">Skills</a>
+            <a href="#publications">Publications</a>
+        </div>
+    </nav>
+
+    <div class="container">
+
+        <!-- Header Profile -->
+        <header class="profile-header">
+            <div class="profile-text">
+                <h1 id="profile-name"></h1>
+                <p class="subtitle" id="profile-title"></p>
+                <div class="contact-links">
+                    <a id="profile-email-link" href="#"><i class="fas fa-envelope"></i> Email</a>
+                    <a id="link-scholar" href="#"><i class="ai ai-google-scholar"></i> Google Scholar</a>
+                    <a id="link-github" href="#"><i class="fab fa-github"></i> GitHub</a>
+                    <a id="link-linkedin" href="#"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                    <a id="link-cv" href="#" download><i class="fas fa-file-pdf"></i> CV</a>
+                    <!-- <a id="link-poster" href="#" target="_blank"><i class="fas fa-image"></i> PhD Poster</a> -->
+                </div>
+            </div>
+            <div class="profile-image">
+                <img id="profile-img" src="" alt="Profile Image">
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main>
+
+            <section id="about" class="section">
+                <div id="about-container">
+                    <!-- Populated by JS -->
+                </div>
+
+                <div class="keywords-list mt-3">
+                    <strong>Focus:</strong> <span id="keywords-inline"></span>
+                </div>
+            </section>
+
+
+            <section id="experience" class="section">
+                <h2 class="section-title">Experience</h2>
+                <div id="experience-container">
+                    <!-- Populated by JS -->
+                </div>
+            </section>
+
+            <section id="education" class="section">
+                <h2 class="section-title">Education</h2>
+                <div id="education-container">
+                    <!-- Populated by JS -->
+                </div>
+            </section>
+
+            <section id="projects" class="section">
+                <h2 class="section-title">Open-Source Projects</h2>
+                <div id="projects-container">
+                    <!-- Populated by JS -->
+                </div>
+            </section>
+
+            <section id="skills" class="section">
+                <h2 class="section-title">Skills & Technical Expertise</h2>
+                <div id="skills-container" class="skills-compact">
+                    <!-- Populated by JS -->
+                </div>
+            </section>
+
+            <section id="publications" class="section">
+                <h2 class="section-title">Selected Publications</h2>
+
+                <div id="publications-container" class="timeline">
+                    <!-- Populated by JS -->
+                </div>
+            </section>
+
+        </main>
+
+        <footer class="site-footer">
+            <p id="footer-text"></p>
+        </footer>
+
+    </div>
+
+    <!-- Data and logic -->
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

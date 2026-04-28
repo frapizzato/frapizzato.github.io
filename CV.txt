@@ -1,0 +1,116 @@
+Francesco Pizzato
+PhD in Computer and Control Engineering
+Valdilana (BI), Italy
++39 3886478663
+fpizzato997@gmail.com
+LinkedIn: https://linkedin.com/in/francesco-pizzato-19831a151/
+GitHub: https://github.com/frapizzato
+Google Scholar: https://scholar.google.com/citations?user=Rb06NmIAAAAJ&hl=en
+
+Short Bio
+I am a PhD Student in Computer and Control Engineering at Politecnico di Torino (DAUIN). I work
+on network and cloud security automation, turning high-level security intents into concrete, enforceable
+configurations and formally ensuring they work as intended. My current work spans Kubernetes policy
+refinement and validation (e.g., Network Policies and RBAC), scalable firewall reconfiguration, and
+reactive security updates driven by monitoring/IDS signals. During my path, I gained international
+research experience through an abroad visiting period in Telefónica Research (Spain) and collaborations
+with national and European research projects.
+
+Experience
+PhD Student – Politecnico di Torino (Turin, Italy)
+
+Nov 2023 – Present
+
+• Member of the NETGROUP research group (DAUIN Department). Research on network security
+automation and cloud security, with focus on formal verification of cloud security configurations and
+optimized firewall reconfiguration in dynamic environments.
+• Supervised and co-managed 10+ Master’s thesis projects in cloud security and network automation
+(list of concluded ones available here webthesis-polito).
+• Contributor to the European research project FLUIDOS, collaborating within an international research
+team on secure computing continuum solutions across heterogeneous edge environments. Developed
+an intent-based solution for workload isolation through network segmentation (https://github.com/
+netgroup-polito/secure-border-controller).
+• Contributor to the SERICS Italian research project, collaborating with multiple Italian universities and
+research centers to improve resiliency of digital infrastructure through the development of innovative
+detection and reaction mechanisms for autonomous cyberattack reaction. Developed REACT-Verefoo,
+an automated solution for reconfiguring firewalls in an optimal, formally correct, and fast way (https:
+//github.com/netgroup-polito/verefoo).
+Teaching Assistant – Politecnico di Torino (Turin, Italy)
+
+Sept 2024 – Present
+
+• Laboratory assistant (>80 total course hours) for several Master’s level courses: “Distributed Systems
+and Programming” (2024–26), “Data Protection, Privacy and Anonymity” (2024–26), “Network and
+Cloud Security” (2024–26), “Computer Networks and Cloud Technologies” (2025–26).
+• Designed and improved laboratory activities on Kubernetes (kubeadm, kubectl), cloud access control
+(X.509 certificates and RBAC), cloud-native network monitoring (Cilium Hubble, Cilium Network Policy, Kubernetes Network Policy), and distributed communication protocols (REST APIs, WebSockets,
+MQTT, TCP/IP sockets).
+Course Collaborator – UNICOLLEGE (Turin, Italy)
+
+Sept 2025 – Jan 2026
+
+• Contributed (around 1/3 of total course hours) to the Bachelor’s course “Analisi del cybercrime e
+security”. Reviewed and evaluated individual capstone projects carried out by students on topics
+concerning cybercrime, legal aspects, and cybersecurity.
+Research Internship – Telefónica Research (Barcelona, Spain)
+
+1
+
+May 2024 – Nov 2024
+
+• Designed and implemented an eBPF-based authorization mechanism for serverless workflows using
+information flow control techniques. Reduced attack surface and improved system latency by approximately 10% compared to previous state-of-the-art solutions.
+• Developed a proof-of-concept, publicly available at https://github.com/frapizzato/janus.
+Research Scholarship – Politecnico di Torino (Turin, Italy)
+
+Jun 2023 – Nov 2023
+
+• Post-master scholarship within the NETGROUP research group, focusing on cloud security and firewall
+automation, extending Master’s thesis results toward publication and initial planning of PhD research.
+
+Education
+Ph.D. in Computer and Control Engineering
+Nov 2023 - Expected completion Nov 2026
+Politecnico di Torino
+Master’s Degree in Computer Engineering (Cybersecurity track) March 2020 – April 2023
+Politecnico di Torino – 110/110
+Bachelor’s Degree in Computer Engineering
+August 2016 – March 2020
+Politecnico di Torino - 101/110
+
+Languages
+Italian: Native
+English: Advanced (daily use in research and teaching) - B2, Cambridge English First
+Spanish: Beginner - A2, 80h of in-person lessons at WORLD CLASS BCN SPANISH SCHOOL
+
+Skills
+Hobby
+Publications
+Journal Articles
+• F. Pizzato, D. Bringhenti, R. Sisto, F. Valenza, “Intent-Driven Network Isolation for the Cloud
+Computing Continuum,” Journal of Network and Systems Management, vol. 34, no. 1, pp. 1–39,
+2026.
+• D. Bringhenti, F. Pizzato, R. Sisto, F. Valenza, “Autonomous attack mitigation through firewall
+reconfiguration,” International Journal of Network Management, vol. 35, no. 1, e2307, 2025.
+
+Conference Papers
+• F. Pizzato, D. Bringhenti, R. Sisto, F. Valenza et al., “Toward a Query-Driven Approach for Formal
+Verification of Cloud Security Configuration,” in Proc. IEEE/IFIP NOMS, 2026.
+• F. Pizzato, D. Bringhenti, R. Sisto, F. Valenza, “A demonstration of an autonomous approach for
+cyberattack mitigation,” in Proc. IEEE CNSM, 2025, pp. 1–3.
+• F. Pizzato, D. Bringhenti, L. Cetino, R. Sisto, F. Valenza, “A demonstration of a network isolation
+solution for the computing continuum,” in Proc. IEEE NFV-SDN, 2025, pp. 1–2.
+• F. Pizzato, D. Bringhenti, R. Sisto, F. Valenza, “Automatic and optimized firewall reconfiguration,”
+in Proc. IEEE/IFIP NOMS, 2024, pp. 1–9.
+• F. Pizzato, D. Bringhenti, R. Sisto, F. Valenza, “Security Automation in next-generation Networks
+and Cloud environments,” in Proc. IEEE/IFIP NOMS, 2024, pp. 1–4.
+• F. Pizzato, D. Bringhenti, R. Sisto, F. Valenza, “An intent-based solution for network isolation in
+Kubernetes,” in Proc. IEEE NetSoft, 2024, pp. 381–386.
+2
+
+• D. Bringhenti, F. Pizzato, R. Sisto, F. Valenza, “A looping process for cyberattack mitigation,” in
+Proc. IEEE CSR, 2024, pp. 276–281.
+
+3
+
+
