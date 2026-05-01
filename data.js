@@ -222,12 +222,6 @@ const portfolioData = {
             "Kept optimization loss modest: post-processing often recovered redundant allocations and, in some topologies, matched the monolithic solution in the number of allocated firewalls.",
             "Showed that decomposition quality depends on traffic locality and clusterization parameters, but still delivers strong scalability improvements across realistic and synthetic topology families."
           ],
-      
-          impactImages: [
-            { src: "assets/projects/parallel-firewall-paper-performance.png", alt: "Parallel firewall configuration time performance and scalability graphs", caption: "Runtime comparison and scalability of the parallelized approach versus monolithic VEREFOO." },
-            { src: "assets/projects/parallel-firewall-paper-optimality.png", alt: "Parallel firewall configuration optimality evaluation graphs", caption: "Optimization evaluation in terms of allocated firewalls and configured rules after merge and post-processing." }
-          ],
-      
           references: [
             { text: "F. Pizzato, D. Bringhenti, F. Valenza, Parallel Automatic Firewall Configuration via Traffic-Aware Graph Partitioning." }
           ],
