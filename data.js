@@ -16,7 +16,7 @@ const portfolioData = {
     about: [
         "I am a PhD Student in Computer and Control Engineering at <strong>Politecnico di Torino (DAUIN)</strong>. I work on network and cloud security automation, turning high-level security intents into concrete, enforceable configurations and formally ensuring they work as intended.",
         "My current work spans Kubernetes policy refinement and validation (e.g., Network Policies and RBAC), scalable firewall reconfiguration, constraint-based security analysis, and reactive security updates driven by monitoring/IDS signals.",
-        "I have gained international research experience through a visiting period at <strong>Telefónica Research</strong> in Spain and collaborations with national and European research projects."
+        "I have gained international research experience through an abroad visiting period in Spain and collaborations with national and European research projects."
     ],
     researchKeywords: [
         { word: "Cloud Security", weight: 5 },
@@ -91,147 +91,150 @@ const portfolioData = {
     ],
     projects: [
         {
-            title: "Janus",
-            description: "An eBPF-based authorization layer for serverless workflows, designed to enforce information-flow policies close to the runtime boundary without pushing security logic into application code.",
-            problem: "Serverless workflows often rely on coarse-grained trust between functions and platform services. When a step is compromised, excessive permissions and implicit data flows can enlarge the attack surface.",
-            solution: "Janus introduces an eBPF-based authorization mechanism that enforces information-flow constraints close to the runtime boundary, without requiring each function to embed custom security logic.",
-            objective: "Reduce the attack surface of serverless workflows while keeping authorization lightweight enough for latency-sensitive function chains.",
-            approach: {
-                text: "The prototype combines Linux/eBPF instrumentation, serverless runtime integration, and policy checks derived from information-flow control. The implementation is currently private and will be disclosed once the related publication is accepted; the GitHub button is kept as the future public entry point."
-            },
-            impact: [
-                "~10% latency improvement compared to the prior state-of-the-art baseline in the prototype evaluation.",
-                "Reduced workflow attack surface by constraining which serverless steps can access sensitive resources.",
-                "Connects kernel-level instrumentation, authorization design, and experimental systems evaluation."
-            ],
-            references: [
-                { text: "Paper under submission - citation placeholder" }
-            ],
-            links: [
-                { text: "Source Code", icon: "fab fa-github", url: "https://github.com/frapizzato/janus", type: "badge-code" }
+          title: "REACT-Verefoo",
+          description: "A MaxSMT-based reconfiguration engine for autonomous attack mitigation that computes formally correct, optimized updates to distributed firewall placement and rules without regenerating the entire configuration from scratch. In the extended system, REACT-Verefoo is the core synthesis component within an end-to-end pipeline that extracts new security requirements from IDS logs, merges them with existing policies, and deploys the updated firewall configuration automatically.",
+          problem: "Modern cyber attacks evolve quickly, while distributed firewall management in virtualized networks remains too slow and too manual. Recomputing the full firewall allocation and rule set from scratch after each new mitigation requirement wastes time, may cause large configuration churn, and is poorly suited to short attack-reaction loops. Existing approaches also often require human intervention to interpret IDS alerts, derive new security requirements, and deploy the resulting rules.",
+
+          solution: "REACT-Verefoo narrows the synthesis problem to the network areas affected by newly added security requirements, while keeping unaffected parts of the deployed configuration fixed. It models reconfiguration as a partial weighted MaxSMT problem with hard constraints for formal correctness and soft constraints that prefer reusing existing firewall instances and rules, thereby reducing both computation time and configuration churn. In the full autonomous framework, this reconfiguration is triggered by IDS logs and followed by automatic rule translation and deployment.",
+
+          objective: "Enable fast, autonomous, and formally correct firewall reconfiguration for attack mitigation in virtualized networks, minimizing both reaction time and the number of changes applied to the deployed distributed firewall.",
+
+          approach: {
+            text: "The overall system starts from a service graph and an initial set of network security requirements. IDS logs are monitored continuously; when an attack is detected, new requirements are extracted and merged with the existing ones to produce a target requirement set. REACT-Verefoo then identifies the subset of the network that may need reconfiguration, builds a partial weighted MaxSMT model over the service graph, allocation graph, traffic flows, and security requirements, and computes an updated firewall allocation scheme and rule set. The optimization prefers preserving existing firewall placements and previously configured rules while still enforcing the target requirements correctly.",
+            images: [
+              { src: "assets/projects/react-verefoo-autonomous-pipeline.png", alt: "Autonomous attack-mitigation pipeline with REACT-Verefoo, IDS, requirement extraction, merging, and deployment", caption: "End-to-end autonomous attack-mitigation workflow, with REACT-Verefoo as the reconfiguration engine." },
+              { src: "assets/projects/react-verefoo-schema.png", alt: "REACT-Verefoo schema showing service graph, allocation graph, requirements, and resulting firewall configuration", caption: "REACT-Verefoo takes the current network and security requirements and computes an updated firewall allocation and configuration." }
             ]
+          },
+      
+          impact: [
+            "Reduced reconfiguration time substantially versus complete recomputation. In the Case-E experiment, average time was 2.529 s with 90% of requirements kept and 4.509 s with 70% kept, compared with 34.343 s for complete reconfiguration.",
+            "The network-area selection step added only 0-100 ms, with most runs below 10 ms, so the optimization overhead was negligible relative to total solving time.",
+            "On larger scalability experiments, the optimized approach reduced average computation time by about 60% versus non-optimized complete reconfiguration in the evaluated upper-bound scenario.",
+            "The method preserves formal correctness while favoring reuse of already allocated firewalls and existing rules, reducing configuration churn during mitigation."
+          ],
+      
+        //   impactImages: [
+        //     { src: "assets/projects/react-verefoo-scalability.png", alt: "Scalability comparison between the new approach and the old approach", caption: "The optimized approach scales better than full reconfiguration as network size grows." },
+        //     { src: "assets/projects/react-verefoo-performance.png", alt: "Average computation time for 90% kept, 70% kept, and complete reconfiguration across Cases A-E", caption: "Reconfiguration remains much faster than complete recomputation across increasing network sizes." }
+        //   ],
+      
+          references: [
+            { text: "F. Pizzato, D. Bringhenti, R. Sisto, F. Valenza, Automatic and optimized firewall reconfiguration, IEEE/IFIP NOMS 2024.", url: "https://doi.org/10.1109/NOMS59830.2024.10575212" },
+            { text: "D. Bringhenti, F. Pizzato, R. Sisto, F. Valenza, Autonomous Attack Mitigation Through Firewall Reconfiguration, International Journal of Network Management, 2025.", url: "https://doi.org/10.1002/nem.2307" }
+          ],
+      
+          links: [
+            { text: "Source Code", icon: "fab fa-github", url: "https://github.com/netgroup-polito/verefoo", type: "badge-code" }
+          ]
         },
         {
-            title: "REACT-Verefoo",
-            description: "A reactive extension of VEREFOO for autonomous cyberattack mitigation: it computes formally correct firewall changes for evolving security requirements instead of regenerating the whole distributed firewall configuration from scratch.",
-            problem: "In autonomous attack reaction, new filtering requirements may arrive frequently and must be deployed quickly. Recomputing the complete distributed firewall configuration from scratch is formally sound but too expensive for short-lived mitigation loops.",
-            solution: "REACT-Verefoo narrows the synthesis problem to the parts of the network affected by added or changed requirements, while keeping the remaining configuration fixed and preserving formal correctness.",
-            objective: "Compute optimized, formally correct firewall reconfigurations within short reaction times after an IDS or monitoring system raises a new mitigation requirement.",
-            approach: {
-                text: "The approach identifies the minimum reconfiguration area induced by the target Network Security Requirements, then formulates a MaxSMT problem with hard constraints for correctness and soft constraints for resource minimization and configuration preservation.",
-                images: [
-                    { src: "assets/projects/react-paper-approach.png", alt: "REACT-Verefoo approach diagram", caption: "General schema of the reconfiguration approach." }
-                ]
-            },
-            impact: [
-                "In the largest evaluated scenario, optimized reconfiguration took 2.529 s with 90% requirements kept, versus 34.343 s for complete reconfiguration (~13.6x faster).",
-                "The change-identification step added only 0-100 ms across validation runs, with most executions below 10 ms.",
-                "Validated on synthetic networks up to 140 endpoints, 30 network security requirements, and 25 NATs."
-            ],
-            impactImages: [
-                { src: "assets/projects/react-paper-performance.png", alt: "REACT-Verefoo performance test graph", caption: "Performance comparison across increasing network sizes." },
-                { src: "assets/projects/react-paper-optimality.png", alt: "REACT-Verefoo optimality comparison graph", caption: "Optimality comparison under different preservation/resource trade-offs." }
-            ],
-            references: [
-                { text: "F. Pizzato et al., Automatic and optimized firewall reconfiguration, IEEE/IFIP NOMS 2024.", url: "https://doi.org/10.1109/NOMS59830.2024.10575212" },
-                { text: "D. Bringhenti et al., Autonomous attack mitigation through firewall reconfiguration, IJNM 2025.", url: "https://doi.org/10.1002/nem.2307" }
-            ],
-            links: [
-                { text: "Source Code", icon: "fab fa-github", url: "https://github.com/netgroup-polito/verefoo", type: "badge-code" }
+          title: "Secure Border Controller",
+          description: "An intent-driven security solution for workload-level network isolation in the computing continuum, implemented as a Kubernetes controller that verifies, harmonizes, translates, and enforces consumer and provider intents as Kubernetes Network Policies.",
+        
+          problem: "In the computing continuum, workloads can be dynamically offloaded across clusters and administrative domains, creating simultaneous and potentially conflicting isolation goals for consumers and providers. Existing approaches are inadequate because they do not address the continuum’s dynamic multi-tenant nature, its infrastructure heterogeneity, or the need to reconcile conflicting objectives before enforcing low-level network isolation policies.",
+        
+          solution: "Secure Border Controller introduces an intent-based workflow in which consumers and providers express high-level network isolation intents, a verification phase checks compatibility between consumer requests and provider authorizations, a harmonization phase resolves discordances between the parties, and a translation phase converts the resulting conflict-free intents into enforceable Kubernetes Network Policies.",
+        
+          objective: "Automate zero-trust and least-privilege workload isolation across the computing continuum by giving both consumers and providers fine-grained control over communications while hiding low-level Kubernetes policy complexity.",
+        
+          approach: {
+            text: "The solution is integrated into the resource acquisition workflow of the computing continuum. Consumers define Private and Request intents, providers define Authorization intents, and the platform contributes Setup intents required for correct operation. The Secure Border Controller first verifies compatibility between consumer Request intents and provider Authorization intents across candidate providers. After a provider is selected, it harmonizes the involved intent sets to resolve three classes of discordance, then translates the harmonized intents into one or more Kubernetes Network Policies and enforces them through the Kubernetes API server. The implementation was built as a Java Kubernetes Controller and validated in the FLUIDOS context using Liqo as the continuum provider substrate.",
+            images: [
+              { src: "assets/projects/sbc-jnsm-workflow.png", alt: "Secure Border Controller workflow across consumer and provider clusters", caption: "Workflow of Secure Border Controller: verification, harmonization, translation, and enforcement across consumer and provider domains." },
+              { src: "assets/projects/sbc-jnsm-architecture.png", alt: "High-level Secure Border Controller architecture for protected borders in the computing continuum", caption: "High-level protected-border architecture showing how Secure Border Controller safeguards communications across the computing continuum." }
             ]
+          },
+      
+          impact: [
+            "Extends the earlier conference version with an enhanced intent language, a new verification phase, a formal harmonization algorithm, and stronger validation.",
+            "Provides four intent categories—Private, Request, Authorization, and Setup—to express both consumer and provider isolation goals in continuum scenarios.",
+            "Verification remains very fast, staying below 0.05 ms per evaluated Request/Authorization tuple across the tested scenarios.",
+            "Translation also remains bounded to negligible average execution times across CIDR-only, pod/namespace-only, and mixed-selector cases.",
+            "Implements the full workflow as a Java Kubernetes Controller that translates harmonized intents into Kubernetes Network Policies and integrates with FLUIDOS and Liqo for continuum resource sharing."
+          ],
+      
+          references: [
+            { text: "F. Pizzato et al., Intent-Driven Network Isolation for the Cloud Computing Continuum, Journal of Network and Systems Management, 2026.", url: "https://doi.org/10.1007/s10922-025-09986-1" },
+            { text: "Earlier conference version: F. Pizzato et al., An intent-based solution for network isolation in Kubernetes, IEEE NetSoft 2024.", url: "https://doi.org/10.1109/NetSoft60951.2024.10588939" }
+          ],
+      
+          videos: [
+            { title: "Secure Border Controller demo video", youtubeId: "7NBoORvkJ5U", thumbnail: "https://img.youtube.com/vi/7NBoORvkJ5U/hqdefault.jpg", url: "https://www.youtube.com/watch?v=7NBoORvkJ5U" }
+          ],
+      
+          links: [
+            { text: "Source Code", icon: "fab fa-github", url: "https://github.com/netgroup-polito/secure-border-controller", type: "badge-code" }
+          ]
         },
         {
-            title: "Secure Border Controller",
-            description: "An intent-driven Kubernetes controller for workload isolation in the cloud-edge continuum, translating high-level tenant/provider communication intents into enforceable Network Policies.",
-            problem: "In continuum scenarios, workloads may be offloaded across administrative domains. Consumers and providers need to agree on allowed communications without manually writing low-level Kubernetes Network Policies for every peering.",
-            solution: "Secure Border Controller lets tenants express private, request, and authorization intents, harmonizes them during resource acquisition, and translates the resulting policy into enforceable Kubernetes Network Policies.",
-            objective: "Automate zero trust and least privilege network isolation for multi-tenant, multi-domain Kubernetes environments participating in cloud-edge resource sharing.",
-            approach: {
-                text: "The designed workflow exchanges consumer and provider intents, resolves discordances through harmonization, translates the accepted intent set, and enforces the resulting network policies through the Kubernetes API.",
-                images: [
-                    { src: "assets/projects/sbc-jnsm-architecture.png", alt: "Secure Border Controller architecture diagram", caption: "Secure Border Controller architecture." },
-                    { src: "assets/projects/sbc-jnsm-workflow.png", alt: "Secure Border Controller workflow diagram", caption: "Verification, harmonization, and translation workflow." }
-                ]
-            },
-            impact: [
-                "Provides a refined intent language, a dedicated verification phase, formal harmonization algorithms, and quantitative validation.",
-                "Verification remains below 0.05 ms per request/authorization tuple across the evaluated scenarios, supporting fast compatibility checks across candidate providers.",
-                "Translation remains bounded to very low average execution times across CIDR, pod/namespace, and mixed-selector scenarios.",
-                "Implements verification, harmonization, translation, and enforcement as a Java Kubernetes Controller integrated with the FLUIDOS resource-acquisition workflow."
-            ],
-            impactImages: [
-                { src: "assets/projects/sbc-jnsm-translation.png", alt: "Secure Border Controller translation example", caption: "Example of intent translation into Kubernetes Network Policies." },
-                { src: "assets/projects/sbc-jnsm-performance-1.png", alt: "Secure Border Controller performance figure one", caption: "Quantitative validation of the verification and harmonization phases." },
-                { src: "assets/projects/sbc-jnsm-performance-2.png", alt: "Secure Border Controller performance figure two", caption: "Additional scalability validation for intent processing." },
-                { src: "assets/projects/sbc-jnsm-performance-3.png", alt: "Secure Border Controller performance figure three", caption: "Additional scalability validation for intent processing." }
-            ],
-            videos: [
-                { title: "Secure Border Controller demo video", youtubeId: "7NBoORvkJ5U", thumbnail: "https://img.youtube.com/vi/7NBoORvkJ5U/hqdefault.jpg", url: "https://www.youtube.com/watch?v=7NBoORvkJ5U" }
-            ],
-            references: [
-                { text: "F. Pizzato et al., Intent-Driven Network Isolation for the Cloud Computing Continuum, JNSM 2026.", url: "https://doi.org/10.1007/s10922-025-09986-1" },
-                { text: "Earlier conference version: F. Pizzato et al., An intent-based solution for network isolation in Kubernetes, IEEE NetSoft 2024.", url: "https://doi.org/10.1109/NetSoft60951.2024.10588939" }
-            ],
-            links: [
-                { text: "Source Code", icon: "fab fa-github", url: "https://github.com/netgroup-polito/secure-border-controller", type: "badge-code" }
+          title: "Cloud Formal",
+          description: "A query-driven formal verification approach for Kubernetes security configuration that lets administrators express high-level verification queries and checks them by translating both cluster configuration and queries into SMT constraints solved with Z3.",
+        
+          problem: "Ensuring the correctness of Kubernetes security configuration is increasingly difficult because cloud environments are large, dynamic, and easy to misconfigure. Manual inspection and testing do not scale well and often fail to reveal subtle errors spanning multiple security domains, such as RBAC authorization combined with reachable network endpoints.",
+        
+          solution: "Cloud Formal introduces a high-level query language for administrators and a formal verification workflow that models Kubernetes security configuration and verification queries as an SMT problem. The approach supports both RBAC and Network Policies and can detect complex cross-domain issues, including lateral movement and multi-level attack conditions.",
+        
+          objective: "Make formal verification practical for cloud security auditing by combining a user-friendly query language with mathematically sound checking of both access control and network reachability properties in a single workflow.",
+        
+          approach: {
+            text: "The workflow starts from two inputs: the cluster configuration and a set of administrator-defined verification queries. The configuration is converted into a graph model where vertices represent cluster resources and edges encode relationships such as role assignments, permissions, and allowed communications. Dedicated modules then extract security-configuration clauses and formulate query clauses over a formal model of users, roles, resources, and endpoints. These clauses are combined into an SMT problem, solved with Z3, and finally translated back into user-facing answers corresponding to the original queries.",
+            images: [
+              { src: "assets/projects/cloud-formal-paper-architecture.png", alt: "Cloud Formal verification workflow architecture", caption: "Architecture of the query-driven formal verification workflow: query input, problem modeling, SMT solving, and translation of results." }
             ]
+          },
+      
+          impact: [
+            "Supports multiple classes of security checks through one query language, including authorization verification, role auditing, network-isolation verification, hypothetical what-if analysis, and holistic queries that combine RBAC and Network Policies.",
+            "Validated on deliberately pessimistic synthetic scenarios with a fixed cluster of 1,000 users, 1,000 roles, 1,000 IP addresses, and 1,200 resources.",
+            "Solved the largest tested scenario, 40,000 verification queries, in less than 15 minutes on a machine with an Intel Core Ultra 7 155H and 32 GB of memory.",
+            "Showed that memory consumption, rather than solver time, becomes the main scalability bottleneck in the largest scenarios, while still remaining manageable on the evaluation machine."
+          ],
+      
+          references: [
+            { text: "F. Pizzato et al., Toward a Query-Driven Approach for Formal Verification of Cloud Security Configuration, IEEE/IFIP NOMS 2026." }
+          ],
+      
+          links: [
+            { text: "Source Code Soon", icon: "fab fa-github", url: "#", type: "badge-code", placeholder: true }
+          ]
         },
         {
-            title: "Cloud Formal",
-            description: "A query-driven formal verification prototype for cloud security configurations, focused on Kubernetes RBAC and Network Policies.",
-            problem: "Cloud administrators need to validate RBAC and Network Policy configurations, but manual inspection is hard to scale and often misses cross-domain issues such as authorization paths combined with reachable network endpoints.",
-            solution: "Cloud Formal offers a high-level query language and maps cloud configuration plus verification queries into SMT constraints solved with Z3, returning user-facing answers to administrators.",
-            objective: "Make formal verification usable for cloud security configuration auditing, covering both access control and network reachability in a single query-driven workflow.",
-            approach: {
-                text: "The workflow extracts cluster configuration into a graph model, formulates security configuration and query clauses, solves them with an SMT solver, and translates solver assignments back into answered queries.",
-                images: [
-                    { src: "assets/projects/cloud-formal-paper-architecture.png", alt: "Cloud Formal architecture diagram", caption: "Architecture of the query-driven verification approach." }
-                ]
-            },
-            impact: [
-                "Validated on pessimistic synthetic scenarios with a fixed cluster of 1,000 users, 1,000 roles, 1,000 IP addresses, and 1,200 resources.",
-                "Solved the largest tested scenario, 40,000 verification queries, in less than 15 minutes on a 32 GB laptop-class machine.",
-                "Supports authorization checks, role auditing, isolation verification, data-exfiltration checks, and combined RBAC/network-policy queries."
-            ],
-            impactImages: [
-                { src: "assets/projects/cloud-formal-paper-scalability.png", alt: "Cloud Formal scalability graphs", caption: "Computation-time and memory scalability with increasing query volume." }
-            ],
-            references: [
-                { text: "F. Pizzato et al., Toward a Query-Driven Approach for Formal Verification of Cloud Security Configuration, IEEE/IFIP NOMS 2026.", url: "#" },
-                { text: "Repository/link placeholder." }
-            ],
-            links: [
-                { text: "Source Code Soon", icon: "fab fa-github", url: "#", type: "badge-code", placeholder: true }
+          title: "Parallel Automatic Firewall Configuration",
+          description: "A traffic-aware graph-partitioning approach for the parallel automated configuration of distributed firewalls, decomposing a global MaxSMT-based refinement problem into cluster-scoped subproblems that are solved concurrently and then reconciled into one deployable configuration.",
+        
+          problem: "Automatic distributed firewall configuration becomes difficult to scale when the whole network and all security requirements are encoded as one globally coupled constraint-solving problem. As network size and policy complexity increase, monolithic MaxSMT synthesis incurs rapidly growing computation costs that can make it impractical for large deployments and time-sensitive scenarios.",
+        
+          solution: "The approach constructs a flow-weighted graph representation of the network, partitions it into traffic-coupled clusters through community detection, solves one MaxSMT-based firewall synthesis problem per cluster in parallel, and then merges the local configurations into a formally correct global solution. A post-processing phase further removes redundant enforcement points introduced by decomposition.",
+        
+          objective: "Improve the scalability of automatic firewall allocation and rule synthesis while preserving formal correctness and keeping the degradation of optimization quality acceptable in terms of allocated firewalls and configured rules.",
+        
+          approach: {
+            text: "Starting from an allocation graph and a set of network security requirements, the workflow first builds a flow graph where edge weights capture traffic-induced coupling among nodes. A traffic-aware clusterization step partitions this graph into subnetworks and assigns security requirements accordingly, with special handling for cut flows and boundary conditions. Each resulting subproblem is then solved independently using the baseline VEREFOO MaxSMT formulation in parallel. Finally, a merge phase reconciles independently synthesized local firewall configurations at shared allocation places, and a post-processing phase removes duplicate firewalls that are no longer necessary after the merge.",
+            images: [
+              { src: "assets/projects/parallel-firewall-paper-approach.png", alt: "Parallel automatic firewall configuration workflow", caption: "Traffic-aware workflow: problem segmentation, parallel per-cluster configuration, merging, and final deployable firewall configuration." }
             ]
-        },
-        {
-            title: "Parallel Automatic Firewall Configuration",
-            description: "A traffic-aware graph-partitioning approach for parallel firewall configuration, decomposing one monolithic VEREFOO-style refinement problem into cluster-scoped subproblems.",
-            problem: "Constraint-based firewall configuration can become too slow when the whole network is encoded as one globally coupled MaxSMT problem, especially as topology size and policy complexity increase.",
-            solution: "The approach builds a flow-weighted graph, partitions it into traffic-aware clusters, solves one configuration problem per cluster in parallel, and merges the partial solutions into one deployable firewall configuration.",
-            objective: "Improve the scalability of automatic firewall allocation and rule synthesis while preserving formal correctness and keeping optimization loss modest.",
-            approach: {
-                text: "The workflow performs problem segmentation, parallel per-cluster configuration, merging, and post-processing to remove redundant firewalls introduced by decomposition.",
-                images: [
-                    { src: "assets/projects/parallel-firewall-paper-approach.png", alt: "Parallel firewall configuration approach diagram", caption: "Traffic-aware clusterization workflow for parallel policy refinement." }
-                ]
-            },
-            impact: [
-                "Achieved runtime reductions that increase with problem size, reaching up to ~98% on large instances in the evaluation.",
-                "Enabled the resolution of firewall configuration problems beyond the practical limits of the monolithic formulation.",
-                "Post-processing mitigates decomposition overhead, with modest degradation in allocated-firewall and rule-count optimality."
-            ],
-            impactImages: [
-                { src: "assets/projects/parallel-firewall-paper-performance.png", alt: "Parallel firewall configuration performance graphs", caption: "Runtime comparison between the parallelized approach and original VEREFOO." },
-                { src: "assets/projects/parallel-firewall-paper-optimality.png", alt: "Parallel firewall configuration optimality graphs", caption: "Optimization evaluation after merging and post-processing." }
-            ],
-            references: [
-                { text: "F. Pizzato, D. Bringhenti, F. Valenza, Parallel Automatic Firewall Configuration via Traffic-Aware Graph Partitioning, draft under review." },
-                { text: "Repository/link placeholder." }
-            ],
-            links: [
-                { text: "Source Code Soon", icon: "fab fa-github", url: "#", type: "badge-code", placeholder: true }
-            ]
+          },
+      
+          impact: [
+            "Substantially reduced computation time versus monolithic VEREFOO, with gains increasing with problem size and reaching about 98% on the largest evaluated instances.",
+            "Enabled the resolution of larger firewall-configuration problems beyond the practical limits of the original monolithic formulation.",
+            "Kept optimization loss modest: post-processing often recovered redundant allocations and, in some topologies, matched the monolithic solution in the number of allocated firewalls.",
+            "Showed that decomposition quality depends on traffic locality and clusterization parameters, but still delivers strong scalability improvements across realistic and synthetic topology families."
+          ],
+      
+          impactImages: [
+            { src: "assets/projects/parallel-firewall-paper-performance.png", alt: "Parallel firewall configuration time performance and scalability graphs", caption: "Runtime comparison and scalability of the parallelized approach versus monolithic VEREFOO." },
+            { src: "assets/projects/parallel-firewall-paper-optimality.png", alt: "Parallel firewall configuration optimality evaluation graphs", caption: "Optimization evaluation in terms of allocated firewalls and configured rules after merge and post-processing." }
+          ],
+      
+          references: [
+            { text: "F. Pizzato, D. Bringhenti, F. Valenza, Parallel Automatic Firewall Configuration via Traffic-Aware Graph Partitioning." }
+          ],
+      
+          links: [
+            { text: "Source Code Soon", icon: "fab fa-github", url: "#", type: "badge-code", placeholder: true }
+          ]
         }
     ],
     publications: [

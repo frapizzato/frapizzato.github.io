@@ -1,11 +1,11 @@
 Francesco Pizzato
 PhD in Computer and Control Engineering
 Valdilana (BI), Italy
-+39 3886478663
 fpizzato997@gmail.com
 LinkedIn: https://linkedin.com/in/francesco-pizzato-19831a151/
 GitHub: https://github.com/frapizzato
 Google Scholar: https://scholar.google.com/citations?user=Rb06NmIAAAAJ&hl=en
+Personal Website: https://frapizzato.github.io
 
 Short Bio
 I am a PhD Student in Computer and Control Engineering at Politecnico di Torino (DAUIN). I work
