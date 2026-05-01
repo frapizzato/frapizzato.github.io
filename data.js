@@ -224,7 +224,26 @@ const portfolioData = {
           links: [
             { text: "Source Code Soon", icon: "fab fa-github", url: "#", type: "badge-code", placeholder: true }
           ]
-        }
+        },
+        {
+    title: "Serverless security via eBPF (Under Submission)",
+    description: "A workflow-aware security framework for serverless applications that uses eBPF-based enforcement to protect application-level interactions across multi-functions serverless workflows. More information will be added once the work is published.",
+    problem: "Existing serverless security mechanisms often protect functions in isolation or colocate enforcement in user-space components such as sidecars or modified runtimes. This can enlarge the attack surface, weaken the trust boundary, and leave serverless workflows vulnerable to cross-function attacks that arise from misconfigurations in functions exploited to interfer with workflow ordering and execution steps to exfiltrate data or harm the system.",
+    solution: "The project investigates a workflow-aware enforcement approach that preserves execution context and validates security policies throughout distributed serverless interactions.",
+    objective: "Provide secure, lightweight, transparent, and practical enforcement of workflow-level security policies for serverless applications, while maintaining low overhead and avoiding changes to function implementations.",
+    approach: {
+      text: "The design relies on eBPF-based enforcement, protected context propagation, and centralized policy coordination to support fine-grained workflow-level protection."
+    },
+    impact: [
+      "Improves protection for multi-step serverless workflows.",
+      "Demonstrates the use of eBPF for workflow-aware serverless security.",
+      "Reduces the need for changes to application code and developer workflows.",
+    ],
+    references: [
+      { text: "Paper under submission" }
+    ],
+    links: []
+}
     ],
     publications: [
         {
